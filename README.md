@@ -1,11 +1,14 @@
 # covid-api-predict
 
+dizer versões de bibliotecas
+
 pip install --upgrade pip
 
 pip install virtualenv
 
-virtualenv env
+python -m virtualenv <nameOfEnv>
 
+cd 
 activate virtual enviroment and install:
 
 pip install pandas
