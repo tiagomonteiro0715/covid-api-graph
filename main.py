@@ -1,5 +1,3 @@
-#tutorial https://towardsdatascience.com/json-and-apis-with-python-fba329ef6ef0~
-
 import requests
 import pandas as pd
 
