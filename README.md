@@ -13,3 +13,5 @@ cd activate virtual enviroment and install:
 pip install pandas
 
 pip instal requests
+
+matplotlib
