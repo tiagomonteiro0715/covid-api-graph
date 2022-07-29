@@ -8,7 +8,8 @@ pip install virtualenv
 
 python -m virtualenv <nameOfEnv>
 
-cd activate virtual enviroment and install:
+cd 
+activate virtual enviroment and install:
 
 pip install pandas
 

@@ -24,13 +24,14 @@ for i in range (5):
 
 def barPlot(countries, deaths):
     fig, ax = plt.subplots()
-    ax.bar(countries, deaths)
+    ax.bar(countries, deaths, width=0.5, log = True)
     plt.show()
+
 
 def pieplot(countries, deaths):
     fig, ax = plt.subplots()
-    ax.pie(deathsorted, radius=3, center=(4, 4), wedgeprops={"linewidth": 1, "edgecolor": "white"}, frame=True)
+    ax.pie(deathsorted, radius=4, center=(4, 4), wedgeprops={"linewidth": 1, "edgecolor": "white"}, frame=True)
     plt.show()
 
-
+barPlot(coutriesorted, deathsorted)
 df.to_excel("country.xlsx")
