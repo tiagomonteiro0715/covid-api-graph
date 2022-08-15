@@ -7,7 +7,7 @@ import torch.nn as nn # make tensores part of nn
 from torch.optim import SGD #stochastic gradient descend
 
 '''
-## Ver recursos e de codigo que goste, fazer projetos
+# Links para resolver o problema
 
 usar seaborn e matplotlib
 
@@ -63,6 +63,8 @@ for i in range (numOfCountries):
     coutriesSorted.append(countries[i])
     confirmedSorted.append(confirmed[i])
 
+#-------------------------------------------------------------------------------------
+#Modelo começa aqui
 deathSorted = np.array(deathSorted)
 confirmedSorted = np.array(confirmedSorted)
 coutriesSorted = np.array(coutriesSorted)
@@ -122,6 +124,8 @@ for epoch in range(100):
     #print("total loss: " + str(total_loss))
 
     #print("Step: " + str(epoch) + " Final Bias: " + str(model.final_bias.data) + "\n")
+
+#-------------------------------------------------------------------------------------
 
 def barPlot(countries, deaths):
     fig, ax = plt.subplots()
