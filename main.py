@@ -27,8 +27,10 @@ https://github.com/yunjey/pytorch-tutorial
 
 https://stackoverflow.com/questions/33962226/common-causes-of-nans-during-training-of-neural-networks?noredirect=1&lq=1
 
-https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/01-basics/linear_regression/main.py
+gerar com https://pytorch.org/docs/stable/generated/torch.randn.html dados para ver se é das arrays que isto não está a funcionar
 
+
+https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/01-basics/linear_regression/main.py
 
 criar um lugar na net com jupyter notebooks bons
 
