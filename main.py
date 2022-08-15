@@ -6,6 +6,33 @@ import torch #create tensors to raw data and weights
 import torch.nn as nn # make tensores part of nn
 from torch.optim import SGD #stochastic gradient descend
 
+'''
+## Ver recursos e de codigo que goste, fazer projetos
+
+usar seaborn e matplotlib
+
+https://pytorch.org/docs/stable/distributions.html
+
+https://github.com/fossasia/visdom
+
+https://github.com/ritchieng/the-incredible-pytorch#Tutorials
+
+https://github.com/tomgoldstein/loss-landscape
+
+https://github.com/ritchieng/the-incredible-pytorch
+
+covid api predcit
+
+https://github.com/yunjey/pytorch-tutorial
+
+https://stackoverflow.com/questions/33962226/common-causes-of-nans-during-training-of-neural-networks?noredirect=1&lq=1
+
+https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/01-basics/linear_regression/main.py
+
+
+criar um lugar na net com jupyter notebooks bons
+
+'''
 
 #instalar e usar seaborn
 
