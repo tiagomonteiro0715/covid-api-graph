@@ -1,3 +1,4 @@
+from pickle import FALSE
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -5,9 +6,8 @@ import numpy as np
 import torch #create tensors to raw data and weights
 import torch.nn as nn # make tensores part of nn
 from torch.optim import SGD #stochastic gradient descend
-
 '''
-# Links para resolver o problema
+## Ver recursos e de codigo que goste, fazer projetos
 
 usar seaborn e matplotlib
 
@@ -27,16 +27,15 @@ https://github.com/yunjey/pytorch-tutorial
 
 https://stackoverflow.com/questions/33962226/common-causes-of-nans-during-training-of-neural-networks?noredirect=1&lq=1
 
-gerar com https://pytorch.org/docs/stable/generated/torch.randn.html dados para ver se é das arrays que isto não está a funcionar
-
-
 https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/01-basics/linear_regression/main.py
+
 
 criar um lugar na net com jupyter notebooks bons
 
+usar seaborn para obter bons gráficos
+dividir o codigo em varios ficheiros
+fazer isto mesmo um bom projeto e acabar documentação
 '''
-
-#instalar e usar seaborn
 
 #https://documenter.getpostman.com/view/10808728/SzS8rjbc#00030720-fae3-4c72-8aea-ad01ba17adf8
 response_info = requests.get("https://api.covid19api.com/summary").json()
@@ -56,26 +55,29 @@ deathSorted = []
 coutriesSorted = []
 confirmedSorted = []
 
+'''
+vão todos os paises para depois se escolhar batch size melhor
 
-numOfCountries = 20
+'''
+numOfCountries = 175#number of cauntries é como o batch size
 for i in range (numOfCountries):
     deathSorted.append(Deaths[i])
     coutriesSorted.append(countries[i])
     confirmedSorted.append(confirmed[i])
 
-#-------------------------------------------------------------------------------------
-#Modelo começa aqui
-deathSorted = np.array(deathSorted)
-confirmedSorted = np.array(confirmedSorted)
+
 coutriesSorted = np.array(coutriesSorted)
 
+deathTensor = torch.tensor(deathSorted, dtype=torch.float64)
+confirmedTensor = torch.tensor(confirmedSorted, dtype=torch.float64)
 
 input_size = numOfCountries
 output_size = numOfCountries
 
 
-deathTensor = torch.from_numpy(deathSorted)
-confirmedTensor = torch.from_numpy(confirmedSorted)
+deathTensor.requires_grad_(True)
+confirmedTensor.requires_grad_(True)
+
 
 class BasicNN_train(nn.Module):
     def __init__(self):#creates and inicializes weights and biases + all objects will have it
@@ -93,39 +95,35 @@ class BasicNN_train(nn.Module):
 
 
 model = BasicNN_train()
-optimizer = SGD(model.parameters(), lr=0.0001)
+optimizer = SGD(model.parameters(), lr=0.000000000000000001)
 
-for epoch in range(100):
+
+for epoch in range(501):
     total_loss = 0
 
     for iteration in range(len(confirmedTensor)):
         input_i = confirmedTensor[iteration]
         targets_i = deathTensor[iteration]
-
-        input_i = input_i.detach()
-
-        targets_i = targets_i.detach()
-        
         output_i = model(input_i)
 
-        print("iteration: " + str(iteration) + "  " + "output_i: " + str(output_i))
 
         loss = (output_i-targets_i)**2#this is the square residual loss function. there are others losso functions
-
-        optimizer.zero_grad()
         loss.backward()#calculate de derivative of the loss function with the respect of the parameters I want to optiize
         #loss.backwars adds derivatives  - accumulates the derivatives
-        optimizer.step()
         total_loss += float(loss)
-        
-    if (total_loss < 0.0001):
-        print("Num stepts: " + str(epoch))
-        break
-    #print("total loss: " + str(total_loss))
 
-    #print("Step: " + str(epoch) + " Final Bias: " + str(model.final_bias.data) + "\n")
+    optimizer.step()
+    optimizer.zero_grad()
 
-#-------------------------------------------------------------------------------------
+
+    print("Step: " + str(epoch) + " Final Bias: " + str(model.weight.data))
+    print("Step: " + str(epoch) + " Final Bias: " + str(model.bias.data))
+    print("Step: " + str(epoch) + " Final Bias: " + str(model.final_bias.data) + "\n")
+    print("\nTotal loss: " + str(total_loss)+"\n\n")
+
+torch.save(model.state_dict(), "model.pth")
+
+print(model(50000))
 
 def barPlot(countries, deaths):
     fig, ax = plt.subplots()
