@@ -30,6 +30,12 @@ https://stackoverflow.com/questions/33962226/common-causes-of-nans-during-traini
 https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/01-basics/linear_regression/main.py
 
 
+desenhar na descrição do projeto isto: https://alexlenail.me/NN-SVG/index.html
+
+colocar também grafico final - o peso é o declice. 
+Nota: será que é preciso multiplicar o peso por alguma coisa para acertar nos valores?
+
+
 criar um lugar na net com jupyter notebooks bons
 
 usar seaborn para obter bons gráficos
