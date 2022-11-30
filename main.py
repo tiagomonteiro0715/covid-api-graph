@@ -116,6 +116,9 @@ class BasicNN_train(nn.Module):
         The final_bias parameter is used
         """
         super(BasicNN_train, self).__init__()
+
+
+        
         self.weight = nn.Parameter(torch.tensor(0.0), requires_grad=True)
         self.bias = nn.Parameter(torch.tensor(0.0), requires_grad=True)
 
